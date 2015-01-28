@@ -1,0 +1,87 @@
+#!/bin/bash
+
+echo "Bem-vindo ao novo APT-GET, O que deseja fazer?"
+
+echo "0 = Instalar [install]" 
+
+echo "1 = Remover (Não exclui pacotes de configurações) [remove]"
+
+echo "2 = Remover (Exclui pacotes de configurações) [purge]"
+
+echo "3 = Atualizar os programas [upgrade]"
+
+echo "4 = Atualizar a lista de pacotes [update]"
+
+echo "5 = Atualiza a Distro [dist-upgrade]"
+
+echo "6 = Reinstalar [reinstall]"
+
+echo "7 = Remover pacotes não usados [autoremove]"
+
+echo "8 = Limpar o sistema [clean & autoclean]"
+
+echo "9 = Adicionar repositório PPA [add-apt-repository]"
+
+echo "10 = Remover repositório PPA [add-apt-repository -r]"
+
+echo Digite o número da opção?
+
+read numero
+
+if [ "$numero" -eq "0" ]; 
+then 
+echo Qual o pacote a instalar?
+read instalar
+sudo apt-get install $instalar
+
+elif [ "$numero" -eq "1" ]; 
+then 
+echo Qual o pacote a remover?
+read remove
+sudo apt-get remove $remove
+
+elif [ "$numero" -eq "2" ]; 
+then 
+echo Qual o pacote a remover?
+read purge
+sudo apt-get --purge remove $purge
+
+elif [ "$numero" -eq "3" ]; 
+then 
+sudo apt-get upgrade
+
+elif [ "$numero" -eq "4" ]; 
+then 
+sudo apt-get update 
+
+elif [ "$numero" -eq "5" ]; 
+then 
+sudo apt-get dist-upgrade
+
+elif [ "$numero" -eq "6" ]; 
+then 
+echo Qual o pacote a reinstalar?
+read reinstalar
+sudo apt-get --reinstall install $reinstalar
+
+elif [ "$numero" -eq "7" ]; 
+then 
+sudo apt-get autoremove
+
+elif [ "$numero" -eq "8" ]; 
+then 
+sudo apt-get clean && sudo apt-get autoclean
+
+elif [ "$numero" -eq "9" ]; 
+then 
+echo Qual o repositório PPA a adicionar?
+read PPA
+sudo add-apt-repository ppa:$PPA 
+
+elif [ "$numero" -eq "10" ]; 
+then 
+echo Qual o repositório PPA a Remover?
+read PPAR
+sudo add-apt-repository -r ppa:$PPA 
+
+fi
